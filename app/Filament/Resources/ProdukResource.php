@@ -13,6 +13,8 @@ use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
+use Filament\Forms\Components\FileUpload;
+
 class ProdukResource extends Resource
 {
     protected static ?string $label = 'Produk'; // Protected the property. Added the `?string` type.
@@ -27,9 +29,10 @@ class ProdukResource extends Resource
             ->schema([
                 Forms\Components\TextInput::make('nama')->columnSpan('full'),
                 Forms\Components\Textarea::make('deskripsi')->columnSpan('full'),
+                Forms\Components\FileUpload::make('gambar')->image()->columnSpan('full'),
                 Forms\Components\Select::make('kategori_id')->relationship('kategori', 'nama')->columnSpan('full'),
                 Forms\Components\TextInput::make('harga')->numeric()->columnSpan('full'),
-                Forms\Components\TextInput::make('stok')->numeric()->columnSpan('full')
+                Forms\Components\TextInput::make('stok')->numeric()->columnSpan('full'),
 
             ]);
     }
@@ -39,6 +42,8 @@ class ProdukResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('nama'),
+                Tables\Columns\TextColumn::make('deskripsi'),
+                Tables\Columns\ImageColumn::make('gambar'),
                 Tables\Columns\TextColumn::make('kategori.nama'),
                 Tables\Columns\TextColumn::make('harga'),
                 Tables\Columns\TextColumn::make('stok')
