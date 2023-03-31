@@ -11,10 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('kategori', function ($table) {
+        Schema::create('customer', function ($table) {
             $table->id();
             $table->string('nama')->nullable();
-            $table->text('deskripsi')->nullable();
+            $table->string('alamat')->nullable();
+            $table->string('email')->nullable();
+            $table->string('hp')->nullable();
             $table->timestamps();
         });
     }
@@ -24,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('kategori');
+        Schema::dropIfExists('customer');
     }
 };
