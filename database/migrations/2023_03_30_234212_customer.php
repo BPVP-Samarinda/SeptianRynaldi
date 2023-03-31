@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('customer', function ($table) {
             $table->id();
             $table->string('nama')->nullable();
+            $table->string('jenis_kelamin')->nullable();
             $table->string('alamat')->nullable();
             $table->string('email')->nullable();
             $table->string('hp')->nullable();

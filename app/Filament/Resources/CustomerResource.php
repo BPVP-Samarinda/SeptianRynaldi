@@ -23,10 +23,15 @@ class CustomerResource extends Resource
     {
         return $form
             ->schema([
-                Tables\Columns\TextColumn::make('nama'),
-                Tables\Columns\TextColumn::make('alamat'),
-                Tables\Columns\ImageColumn::make('email'),
-                Tables\Columns\TextColumn::make('hp'),
+                Forms\Components\TextInput::make('nama')->columnSpan('full'),
+                Forms\Components\Radio::make('jenis_kelamin')
+                    ->options([
+                        'Laki-Laki' => 'Laki-Laki',
+                        'Perempuan' => 'Perempuan',
+                    ]),
+                Forms\Components\TextInput::make('alamat')->columnSpan('full'),
+                Forms\Components\TextInput::make('email')->email()->columnSpan('full'),
+                Forms\Components\TextInput::make('hp')->numeric()->columnSpan('full'),
             ]);
     }
 
@@ -35,8 +40,9 @@ class CustomerResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('nama'),
+                Tables\Columns\TextColumn::make('jenis_kelamin'),
                 Tables\Columns\TextColumn::make('alamat'),
-                Tables\Columns\ImageColumn::make('email'),
+                Tables\Columns\TextColumn::make('email'),
                 Tables\Columns\TextColumn::make('hp'),
             ])
             ->filters([
