@@ -23,7 +23,10 @@ class CustomerResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Tables\Columns\TextColumn::make('nama'),
+                Tables\Columns\TextColumn::make('alamat'),
+                Tables\Columns\ImageColumn::make('email'),
+                Tables\Columns\TextColumn::make('hp'),
             ]);
     }
 
@@ -31,32 +34,27 @@ class CustomerResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('nama'),
+                Tables\Columns\TextColumn::make('alamat'),
+                Tables\Columns\ImageColumn::make('email'),
+                Tables\Columns\TextColumn::make('hp'),
             ])
             ->filters([
                 //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
-    
-    public static function getRelations(): array
-    {
-        return [
-            //
-        ];
-    }
-    
+
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListCustomers::route('/'),
-            'create' => Pages\CreateCustomer::route('/create'),
-            'edit' => Pages\EditCustomer::route('/{record}/edit'),
+            'index' => Pages\ManageCustomers::route('/'),
         ];
-    }    
+    }
 }
